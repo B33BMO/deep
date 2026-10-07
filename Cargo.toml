@@ -2,6 +2,8 @@
 name = "deep"
 version = "0.1.0"
 edition = "2024"
+description = "A task manager for the terminal: processes, trees, ports, and kill"
+repository = "https://github.com/B33BMO/deep"
 
 [dependencies]
 anyhow = "1.0.104"

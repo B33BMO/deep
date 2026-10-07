@@ -10,6 +10,13 @@ use crossterm::event::{self, DisableMouseCapture, EnableMouseCapture, Event, Key
 use crossterm::execute;
 
 fn main() -> anyhow::Result<()> {
+    if let Some(arg) = std::env::args().nth(1) {
+        match arg.as_str() {
+            "-V" | "--version" => println!("deep {}", env!("CARGO_PKG_VERSION")),
+            _ => println!("deep {}\nA task manager for the terminal. Run with no arguments, then press ? for keys.", env!("CARGO_PKG_VERSION")),
+        }
+        return Ok(());
+    }
     eprintln!("deep: reading processes...");
     let mut app = app::App::new();
 
