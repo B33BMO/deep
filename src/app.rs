@@ -202,11 +202,7 @@ impl App {
 
     fn push_hist(&mut self) {
         self.cpu_hist.push_back(self.snap.cpu.round() as u64);
-        let mem = if self.snap.mem_total > 0 {
-            self.snap.mem_used * 100 / self.snap.mem_total
-        } else {
-            0
-        };
+        let mem = (self.snap.mem_used * 100).checked_div(self.snap.mem_total).unwrap_or(0);
         self.mem_hist.push_back(mem);
         while self.cpu_hist.len() > HIST {
             self.cpu_hist.pop_front();
